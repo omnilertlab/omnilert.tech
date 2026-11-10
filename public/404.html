@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=/" />
+    <title>Omnilert — redirecting</title>
+    <script>
+      // GitHub Pages SPA fallback: remember the requested path, then reload at /.
+      sessionStorage.setItem('omnilert-redirect', location.pathname + location.search)
+      location.replace('/')
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/">omnilert.tech</a>…</p>
+  </body>
+</html>
