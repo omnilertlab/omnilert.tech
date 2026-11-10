@@ -1,0 +1,189 @@
+@import 'tailwindcss';
+
+:root {
+  --bg: #121210;
+  --surface: #1c1c1a;
+  --surface-2: #202020;
+  --ash: #2a2a27;
+  --ink: #f5f2ea;
+  --muted: #a8a49b;
+  --line: #33332f;
+  --ember: #ff682c;
+}
+
+[data-theme='light'] {
+  --bg: #ffffff;
+  --surface: #efefef;
+  --surface-2: #f7f7f5;
+  --ash: #e4e4e0;
+  --ink: #202020;
+  --muted: #6b675f;
+  --line: #dcdcd6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: 'Space Grotesk', 'Inter Tight', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Asymmetric Ventriloc card: sharp top-right, soft elsewhere. No shadows. */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px 0 20px 20px;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  border-color: var(--ember);
+}
+
+.pill-nav {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0;
+  font-weight: 500;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.link-ember {
+  text-decoration: underline;
+  text-decoration-color: var(--ember);
+  text-underline-offset: 4px;
+}
+
+.ember-dot {
+  background: var(--ember);
+  border-radius: 999px;
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 104, 44, 0.45);
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 8px rgba(255, 104, 44, 0);
+  }
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-scroll 36s linear infinite;
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(400%);
+  }
+}
+
+.scan-line {
+  animation: scan 3.2s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.word-in {
+  display: inline-block;
+  animation: word-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-enter {
+  animation: rise 0.55s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
