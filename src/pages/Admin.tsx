@@ -68,16 +68,16 @@ export default function Admin({ content, setContent }: { content: SiteContent; s
   ]
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+    <div className="mx-auto max-w-[1200px] px-4 py-14 sm:px-6 sm:py-20">
       <p className="text-xs uppercase tracking-[0.22em]" style={{ color: 'var(--muted)' }}>Omnilert</p>
-      <h1 className="mt-4 text-5xl leading-[0.95] sm:text-6xl">Control Room</h1>
+      <h1 className="text-display mt-4">Control Room</h1>
       <p className="mt-4 max-w-2xl" style={{ color: 'var(--muted)' }}>
         Edit the site&rsquo;s copy, divisions, updates, and early-access inbox. Changes save to
         this browser (localStorage) for preview — use Export to download an updated{' '}
         <code>src/content.json</code> and commit it to make changes permanent for everyone.
       </p>
       <div className="mt-6 flex flex-wrap gap-2">
-        <button onClick={exportJson} className="btn px-4 py-2 text-sm" style={{ background: 'var(--ink)', color: 'var(--bg)' }}>
+        <button onClick={exportJson} className="btn btn-primary">
           Export content.json ↓
         </button>
         <button
@@ -109,7 +109,7 @@ export default function Admin({ content, setContent }: { content: SiteContent; s
       </div>
 
       {tab === 'copy' && (
-        <div className="mt-8 grid gap-4">
+        <div className="mt-8 grid gap-5">
           {Object.entries(SETTING_LABELS).map(([key, label]) => (
             <label key={key} className="grid gap-1 text-sm">
               {label}
@@ -126,11 +126,11 @@ export default function Admin({ content, setContent }: { content: SiteContent; s
       )}
 
       {tab === 'divisions' && (
-        <div className="mt-8 grid gap-6">
+        <div className="mt-8 grid gap-5">
           {content.divisions.map((d) => (
-            <div key={d.id} className="card p-6">
+            <div key={d.id} className="card p-10">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="font-display text-2xl">{d.name}</h2>
+                <h2 className="font-display text-subheading">{d.name}</h2>
                 <label className="flex items-center gap-2 text-sm">
                   <input
                     type="checkbox"
@@ -153,7 +153,7 @@ export default function Admin({ content, setContent }: { content: SiteContent; s
                     />
                   </label>
                 ))}
-                <p className="text-sm font-medium">Features</p>
+                <p className="text-sm">Features</p>
                 {d.features.map((f, i) => (
                   <div key={i} className="grid gap-2 border p-3" style={{ borderColor: 'var(--line)' }}>
                     <input
@@ -180,9 +180,9 @@ export default function Admin({ content, setContent }: { content: SiteContent; s
       )}
 
       {tab === 'updates' && (
-        <div className="mt-8 grid gap-4">
+        <div className="mt-8 grid gap-5">
           {content.updates.map((u) => (
-            <div key={u.id} className="card p-6">
+            <div key={u.id} className="card p-10">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <input
                   value={u.title}
@@ -258,14 +258,14 @@ export default function Admin({ content, setContent }: { content: SiteContent; s
       )}
 
       {tab === 'inbox' && (
-        <div className="mt-8 grid gap-4">
+        <div className="mt-8 grid gap-5">
           {submissions.length === 0 && (
             <p style={{ color: 'var(--muted)' }}>
               No early-access submissions yet. Submissions from the site&rsquo;s forms appear here.
             </p>
           )}
           {submissions.map((s) => (
-            <div key={s.id} className="card p-6">
+            <div key={s.id} className="card p-10">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="font-display text-xl">{s.name} <span className="text-sm" style={{ color: 'var(--muted)' }}>· {s.email}</span></p>
                 <span className="text-xs uppercase tracking-[0.18em]" style={{ color: s.handled ? 'var(--muted)' : 'var(--ember)' }}>

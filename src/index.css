@@ -1,24 +1,67 @@
 @import 'tailwindcss';
 
+/*
+ * Ventriloc — exact tokens (light is canonical).
+ * Dark is a faithful role-for-role translation of the same tokens,
+ * structure, and rules — not a different design.
+ * See DESIGN.md for the full spec and the dark mapping table.
+ */
 :root {
-  --bg: #121210;
-  --surface: #1c1c1a;
-  --surface-2: #202020;
-  --ash: #2a2a27;
-  --ink: #f5f2ea;
-  --muted: #a8a49b;
-  --line: #33332f;
-  --ember: #ff682c;
+  /* Canonical Ventriloc colors */
+  --color-graphite: #202020;
+  --color-canvas-white: #ffffff;
+  --color-ash: #efefef;
+  --color-fog: #f5f5f5;
+  --color-ivory: #ebe6dd;
+  --color-steel: #4d4d4d;
+  --color-slate: #828282;
+  --color-mist: #e8e8e8;
+  --color-ember-orange: #ff682c;
+  --color-brass: #816729;
+
+  /* Typography */
+  --font-polysans: 'PolySans', 'Inter Tight', 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing / layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 40px;
+  --element-gap: 20px;
+
+  /* Light roles (canonical) */
+  --bg: var(--color-canvas-white);
+  --surface: var(--color-ash);
+  --surface-2: var(--color-fog);
+  --ivory: var(--color-ivory);
+  --ink: var(--color-graphite);
+  --muted: var(--color-steel);
+  --muted-2: var(--color-slate);
+  --line: var(--color-mist);
+  --ash: var(--color-ash);
+  --ember: var(--color-ember-orange);
+  --brass: var(--color-brass);
+
+  /* CTA fill: Graphite in light */
+  --cta-bg: var(--color-graphite);
+  --cta-text: var(--color-canvas-white);
+  --data-card-bg: var(--color-canvas-white);
 }
 
-[data-theme='light'] {
-  --bg: #ffffff;
-  --surface: #efefef;
-  --surface-2: #f7f7f5;
-  --ash: #e4e4e0;
-  --ink: #202020;
-  --muted: #6b675f;
-  --line: #dcdcd6;
+/* Dark: same roles, translated. Ember and Brass keep their exact values. */
+[data-theme='dark'] {
+  --bg: #121210;
+  --surface: #202020;
+  --surface-2: #1c1c1a;
+  --ivory: #2a2a27;
+  --ink: #f5f2ea;
+  --muted: #a8a49b;
+  --muted-2: #828282;
+  --line: #33332f;
+  --ash: #2a2a27;
+  --cta-bg: #f5f2ea;
+  --cta-text: #121210;
+  --data-card-bg: #202020;
 }
 
 html {
@@ -28,24 +71,89 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Headings / nav / buttons: PolySans, weight 400 ONLY, -0.02em. Never bold. */
 h1,
 h2,
 h3,
 .font-display {
-  font-family: 'Space Grotesk', 'Inter Tight', system-ui, sans-serif;
+  font-family: var(--font-polysans);
   font-weight: 400;
   letter-spacing: -0.02em;
 }
 
-/* Asymmetric Ventriloc card: sharp top-right, soft elsewhere. No shadows. */
+/* Exact Ventriloc type scale */
+.text-display {
+  font-family: var(--font-polysans);
+  font-weight: 400;
+  font-size: 66px;
+  line-height: 0.91;
+  letter-spacing: -1.32px;
+}
+.text-heading-lg {
+  font-family: var(--font-polysans);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
+.text-heading {
+  font-family: var(--font-polysans);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.19;
+  letter-spacing: -0.64px;
+}
+.text-subheading {
+  font-size: 18px;
+  line-height: 1.25;
+}
+.text-caption {
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+@media (max-width: 640px) {
+  .text-display {
+    font-size: 44px;
+    line-height: 0.95;
+    letter-spacing: -0.88px;
+  }
+  .text-heading-lg {
+    font-size: 32px;
+  }
+}
+
+/* Layout helpers */
+.container-ventriloc {
+  margin-inline: auto;
+  max-width: var(--page-max-width);
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .container-ventriloc {
+    padding-inline: 1.5rem;
+  }
+}
+.section-ventriloc {
+  padding-block: var(--section-gap);
+}
+.band-ash {
+  background: var(--surface);
+}
+.band-ivory {
+  background: var(--ivory);
+}
+
+/* Cards: 8px radius, 40px padding, no shadow. */
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 20px 0 20px 20px;
+  border-radius: 8px;
   transition:
     transform 0.35s ease,
     border-color 0.35s ease;
@@ -56,18 +164,56 @@ h3,
   border-color: var(--ember);
 }
 
+/* Featured card: asymmetric 6px 0px 0px, Ash, 70px top / 60px left padding. */
+.card-asym {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px 0px 0px;
+  padding: 70px 40px 40px 60px;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+@media (max-width: 640px) {
+  .card-asym {
+    padding: 40px 24px 24px 28px;
+  }
+}
+
+/* Data dashboard card: 20px radius, 40px padding, no shadow. */
+.card-data {
+  background: var(--data-card-bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.tag {
+  border-radius: 20px;
+}
+
+/* Nav pill: Ash, 200px radius, 8px vertical / 18px horizontal padding. */
 .pill-nav {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 200px;
+  padding: 8px 18px;
 }
 
+/* Buttons: 0px radius, PolySans 16px weight 400, padding 10px 20px. No shadow. */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   border-radius: 0;
-  font-weight: 500;
+  font-family: var(--font-polysans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  padding: 10px 20px;
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
@@ -77,12 +223,26 @@ h3,
   transform: translateY(1px);
 }
 
+.btn-primary {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+/* Links: 1px Ember underline, offset 2-3px. Used sparingly. */
 .link-ember {
   text-decoration: underline;
   text-decoration-color: var(--ember);
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
+/* Ember dot: pulse by opacity/scale only — no shadows anywhere. */
 .ember-dot {
   background: var(--ember);
   border-radius: 999px;
@@ -93,11 +253,11 @@ h3,
   0%,
   100% {
     opacity: 1;
-    box-shadow: 0 0 0 0 rgba(255, 104, 44, 0.45);
+    transform: scale(1);
   }
   50% {
-    opacity: 0.65;
-    box-shadow: 0 0 0 8px rgba(255, 104, 44, 0);
+    opacity: 0.55;
+    transform: scale(1.25);
   }
 }
 

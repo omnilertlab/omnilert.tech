@@ -30,7 +30,7 @@ function Nav({ theme, setTheme }: { theme: string; setTheme: (t: string) => void
   ]
   return (
     <header className="sticky top-0 z-40 backdrop-blur" style={{ background: 'color-mix(in srgb, var(--bg) 82%, transparent)' }}>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3 px-4 py-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5">
           <span className="ember-dot inline-block h-3 w-3" />
           <span className="font-display text-xl">Omnilert</span>
@@ -41,7 +41,7 @@ function Nav({ theme, setTheme }: { theme: string; setTheme: (t: string) => void
               key={l.to}
               to={l.to}
               className={({ isActive }) =>
-                `rounded-full px-3 py-1.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
+                `rounded-full px-3 py-1.5 text-sm transition ${isActive ? '' : ''}`
               }
               style={({ isActive }) => (isActive ? { background: 'var(--ash)' } : {})}
             >
@@ -51,12 +51,12 @@ function Nav({ theme, setTheme }: { theme: string; setTheme: (t: string) => void
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle theme={theme} setTheme={setTheme} />
-          <Link to="/admin" className="btn px-4 py-2 text-sm" style={{ background: 'var(--ink)', color: 'var(--bg)' }}>
+          <Link to="/admin" className="btn btn-primary">
             Control Room
           </Link>
         </div>
       </div>
-      <nav className="flex gap-4 overflow-x-auto px-4 pb-3 text-sm md:hidden" aria-label="Main navigation">
+      <nav className="flex gap-5 overflow-x-auto px-4 pb-3 text-sm md:hidden" aria-label="Main navigation">
         {links.map((l) => (
           <NavLink key={l.to} to={l.to} className="shrink-0">
             {l.label}
@@ -71,9 +71,9 @@ function Footer({ content }: { content: SiteContent }) {
   const year = new Date().getFullYear()
   return (
     <footer className="border-t py-12" style={{ borderColor: 'var(--line)' }}>
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 md:grid-cols-3">
+      <div className="mx-auto grid max-w-[1200px] gap-8 px-4 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="flex items-center gap-2 font-display text-lg">
+          <p className="flex items-center gap-2 font-display text-subheading">
             <span className="ember-dot inline-block h-2.5 w-2.5" /> Omnilert
           </p>
           <p className="mt-3 text-sm" style={{ color: 'var(--muted)' }}>
@@ -83,22 +83,22 @@ function Footer({ content }: { content: SiteContent }) {
         <div className="text-sm">
           <p className="uppercase tracking-[0.18em]" style={{ color: 'var(--muted)' }}>Pages</p>
           <ul className="mt-3 space-y-2">
-            <li><Link className="link-ember" to="/">Home</Link></li>
-            <li><Link className="link-ember" to="/app">Omnilert App</Link></li>
-            <li><Link className="link-ember" to="/lab">Omnilert Lab</Link></li>
-            <li><Link className="link-ember" to="/archive">Archive</Link></li>
-            <li><Link className="link-ember" to="/team">Team</Link></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/app">Omnilert App</Link></li>
+            <li><Link to="/lab">Omnilert Lab</Link></li>
+            <li><Link to="/archive">Archive</Link></li>
+            <li><Link to="/team">Team</Link></li>
           </ul>
         </div>
         <div className="text-sm">
           <p className="uppercase tracking-[0.18em]" style={{ color: 'var(--muted)' }}>Control</p>
           <ul className="mt-3 space-y-2">
-            <li><Link className="link-ember" to="/admin">Control Room</Link></li>
+            <li><Link to="/admin">Control Room</Link></li>
             <li><span style={{ color: 'var(--muted)' }}>Positioning on this site is a draft.</span></li>
           </ul>
         </div>
       </div>
-      <p className="mx-auto mt-10 max-w-6xl px-4 text-xs sm:px-6" style={{ color: 'var(--muted)' }}>
+      <p className="mx-auto mt-10 max-w-[1200px] px-4 text-xs sm:px-6" style={{ color: 'var(--muted)' }}>
         © {year} Omnilert — independent startup in active development. Not affiliated with any other company
         named Omnilert.
       </p>
@@ -115,7 +115,7 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('omnilert-theme') ?? 'dark')
+  const [theme, setTheme] = useState(() => localStorage.getItem('omnilert-theme') ?? 'light')
   const [content, setContentState] = useState<SiteContent>(() => loadContent())
 
   useEffect(() => {
@@ -154,12 +154,12 @@ export default function App() {
           <Route
             path="*"
             element={
-              <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-                <p className="font-display text-4xl">That page isn&rsquo;t here.</p>
+              <div className="mx-auto max-w-[1200px] px-4 py-24 sm:px-6">
+                <p className="font-display text-heading-lg">That page isn&rsquo;t here.</p>
                 <p className="mt-3" style={{ color: 'var(--muted)' }}>
                   Try the <Link className="link-ember" to="/">home page</Link>,{' '}
-                  <Link className="link-ember" to="/app">Omnilert App</Link>, or{' '}
-                  <Link className="link-ember" to="/lab">Omnilert Lab</Link>.
+                  <Link to="/app">Omnilert App</Link>, or{' '}
+                  <Link to="/lab">Omnilert Lab</Link>.
                 </p>
               </div>
             }

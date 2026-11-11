@@ -41,7 +41,7 @@ export function Observatory() {
   }, [inView, tick])
 
   return (
-    <div ref={ref} className="card overflow-hidden" aria-label="Signal Observatory">
+    <div ref={ref} className="card-data overflow-hidden" aria-label="Signal Observatory">
       <div className="flex items-center justify-between border-b px-5 py-3" style={{ borderColor: 'var(--line)' }}>
         <span className="text-xs uppercase tracking-[0.18em]" style={{ color: 'var(--muted)' }}>
           Signal Observatory — live
@@ -58,7 +58,7 @@ export function Observatory() {
         />
         <ul className="space-y-3">
           {items.map((item, i) => (
-            <li key={`${item.label}-${i}`} className="flex items-center justify-between gap-4 text-sm">
+            <li key={`${item.label}-${i}`} className="flex items-center justify-between gap-5 text-sm">
               <span className="font-display">{item.label}</span>
               <span className="truncate" style={{ color: 'var(--muted)' }}>
                 {item.detail}

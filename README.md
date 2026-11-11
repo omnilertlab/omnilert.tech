@@ -1,8 +1,10 @@
 # omnilert.tech
 
 Omnilert — an independent startup in active development. This is the company site:
-a dark-first, Ventriloc-inspired, multi-page animated site with a Control Room
+a Ventriloc-inspired, multi-page animated site with a Control Room
 admin for editing the site's copy, divisions, updates, and early-access inbox.
+Light is the default theme; dark is a faithful role-for-role translation of
+the same tokens (see `DESIGN.md`).
 
 **Positioning is a draft.** Every word on the site is editable from the Control
 Room (`/admin`) — the story sharpens as the product does. This site is not
@@ -19,14 +21,21 @@ affiliated with any other company named Omnilert.
 
 ## Design
 
-Ventriloc dark, from [Refero Styles](https://styles.refero.design/style/f99aca3e-5289-4595-a7cc-77a72052f4b8):
+Ventriloc, from [Refero Styles](https://styles.refero.design/style/f99aca3e-5289-4595-a7cc-77a72052f4b8) — full spec in [`DESIGN.md`](DESIGN.md):
 
-- Warm graphite `#202020` / `#121210` background, ivory text, Ember Orange
-  `#ff682c` used sparingly — only as punctuation, highlights, and the pulsing
-  ember. Pages are ~95% achromatic. Light mode toggle included.
-- Headings in Space Grotesk (PolySans fallback) at weight 400, body in Inter.
-- Asymmetric cards (sharp top-right), pill navigation, no box shadows,
-  generous whitespace.
+- Light canonical tokens: Graphite `#202020`, Canvas White `#ffffff`, Ash
+  `#efefef`, Fog `#f5f5f5`, Ivory `#ebe6dd`, Steel `#4d4d4d`, Slate `#828282`,
+  Mist `#e8e8e8`, Ember Orange `#ff682c`, Brass `#816729`. Dark translates
+  each role (page `#121210`, surface `#202020`, ivory text `#f5f2ea`); Ember
+  and Brass keep their exact values. Pages are ~95% achromatic.
+- Headings in PolySans (Inter Tight / Space Grotesk fallback) at weight 400
+  only, letter-spacing -0.02em; display 66px / 0.91, heading-lg 40px,
+  heading 32px, subheading 18px. Body in Inter. No bold headings.
+- Primary CTA: Graphite filled, white text, 0px corners, PolySans 16px 400,
+  10px 20px padding. Ghost: 1px Graphite border, transparent. Ash pill nav
+  (200px radius). Asymmetric cards 6px 0px 0px, data cards 20px radius,
+  regular cards 8px, 40px padding, 80px section gaps, 1200px max-width.
+  No box shadows, no Ember-filled buttons, no blue/green.
 - Animated: word-by-word hero headline, scroll reveals, count-up stats,
   infinite signal ticker, scanning Signal Observatory panel (its timer only
   runs while on screen), hover-lift cards, page transitions.

@@ -24,8 +24,8 @@ export function EarlyAccessForm({ division, id }: { division: string; id?: strin
 
   if (done) {
     return (
-      <div className="card p-6" id={id}>
-        <p className="font-display text-2xl">You&rsquo;re on the list.</p>
+      <div className="card p-10" id={id}>
+        <p className="font-display text-subheading">You&rsquo;re on the list.</p>
         <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
           Thanks — we&rsquo;ll be in touch when a seat opens for {division}.
         </p>
@@ -34,8 +34,8 @@ export function EarlyAccessForm({ division, id }: { division: string; id?: strin
   }
 
   return (
-    <form onSubmit={submit} id={id} className="card p-6">
-      <p className="font-display text-2xl">Tell us what you can&rsquo;t afford to miss</p>
+    <form onSubmit={submit} id={id} className="card p-10">
+      <p className="font-display text-subheading">Tell us what you can&rsquo;t afford to miss</p>
       <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
         Early access for {division}. No spam — one message when there&rsquo;s a seat.
       </p>
@@ -75,7 +75,7 @@ export function EarlyAccessForm({ division, id }: { division: string; id?: strin
           placeholder="The signals my team can't afford to miss…"
         />
       </label>
-      <button type="submit" className="btn mt-5 px-5 py-3 text-sm" style={{ background: 'var(--ink)', color: 'var(--bg)' }}>
+      <button type="submit" className="btn btn-primary mt-5">
         Request early access →
       </button>
       <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
